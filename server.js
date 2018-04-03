@@ -7,24 +7,39 @@ app.use(bodyParser.json());
 const db = {
     users: [
         {
-            id: "123",
+            id: 123,
             name: "ashish",
             email: "ashish@email.com",
             password: "cookies",
-            joinDate: new Date()
+            entries: 0,
+            joined: new Date()
         },
         {
-            id: "124",
+            id: 124,
             name: "jarvis",
             email: "jarvis@email.com",
             password: "bananas",
-            joinDate: new Date()
+            entries: 0,
+            joined: new Date()
         }
     ]
 }
 
 app.get('/', (req, res)=> {
     res.json('this is working');
+})
+
+app.post('/register', (req, res)=> {
+    const {name,email,password} = req.body;
+    db.users.push({
+        id: 125,
+        name: name,
+        email: email,
+        pass: password,
+        entries: 0,
+        joined: new Date()
+    })
+    res.json(db.users[db.users.length-1]);
 })
 
 app.post('/signin', (req, res)=> {
