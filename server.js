@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const db = {
     users: [
@@ -67,7 +69,7 @@ app.post('/register', (req, res)=> {
         id: '125',
         name: name,
         email: email,
-        pass: password,
+        password: password,
         entries: 0,
         joined: new Date()
     })
@@ -85,6 +87,6 @@ app.post('/signin', (req, res)=> {
     
 })
 
-app.listen('3000', ()=> {
-    console.log('server started on port 3000');
+app.listen('3001', ()=> {
+    console.log('server started on port 3001');
 })
