@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 const db = {
     users: [
         {
-            id: 123,
+            id: '123',
             name: "ashish",
             email: "ashish@email.com",
             password: "cookies",
@@ -15,7 +15,7 @@ const db = {
             joined: new Date()
         },
         {
-            id: 124,
+            id: '124',
             name: "jarvis",
             email: "jarvis@email.com",
             password: "bananas",
@@ -26,13 +26,45 @@ const db = {
 }
 
 app.get('/', (req, res)=> {
-    res.json('this is working');
+    res.json(db.users);
+})
+
+app.get('/profile/:id', (req, res)=> {
+    const { id } = req.params;
+    let found = false;
+    db.users.forEach(user => {
+     const { id } = req.params
+     if(user.id === id) {
+         found = true;
+         return res.json(user);
+     }
+     if(!found) {
+         res.status(404).json('oh no, no such user!!!');
+     }
+     });
+     console.log(typeof(db.users[1].id));
+     console.log(typeof(id));
+});
+
+app.put('/image', (req, res)=> {
+    const { id } = req.body;
+    let found = false;
+    db.users.forEach(user => {
+        if(user.id === id) {
+            found =true;
+            user.entries++;
+            return res.send(user);
+        }
+        if(!found){
+            res.status(404).json('no such user found');
+        }
+    })
 })
 
 app.post('/register', (req, res)=> {
     const {name,email,password} = req.body;
     db.users.push({
-        id: 125,
+        id: '125',
         name: name,
         email: email,
         pass: password,
