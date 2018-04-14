@@ -77,15 +77,17 @@ app.post('/register', (req, res)=> {
 })
 
 app.post('/signin', (req, res)=> {
-    if(req.body.email === db.users[0].email &&
-        req.body.password === db.users[0].password) {
-            res.json('logged in !!');
+    if(req.body.email === db.users[1].email &&
+        req.body.password === db.users[1].password) {
+            res.json(db.users[0]);
         } else {
             res.status(400).json('error occured!!');
         }
     // res.send('login page');
     
 })
+
+app.post
 
 app.listen('3001', ()=> {
     console.log('server started on port 3001');
