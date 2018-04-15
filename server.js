@@ -87,8 +87,6 @@ app.post('/signin', (req, res)=> {
     
 })
 
-app.post
-
 app.listen('3001', ()=> {
     console.log('server started on port 3001');
 })
